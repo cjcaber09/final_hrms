@@ -12,7 +12,7 @@ class EmployeeController extends Controller
 {
     
     public function __construct(){
-        $employees = Employee_User::orderBy('employee_status','asc')->paginate(9);
+        $employees = Employee_User::orderBy('id','desc')->paginate(9);
         
         view::share('employees',$employees);
         $this->middleware('auth');
@@ -72,15 +72,16 @@ class EmployeeController extends Controller
             return redirect()->back()->withErrors($validator->messages());
            
         } else {
-            $employee::create([
+            $id = $employee::create([
                 'employee_detail' => '0',
                 'employee_status' => 'active',
                 'employee_name' => $request->input('name'),
                 'employee_email' => $request->input('email'),
                 'employee_password' => bcrypt($request->input('password'))
-            ]);
+            ])->id;
             
-            return redirect('employee');
+            
+            return $id;
         }
         
     }

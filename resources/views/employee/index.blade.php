@@ -24,7 +24,10 @@
                         @foreach ($employees as $employee)
                         
                             <div class="col-md-6 col-lg-6 col-xlg-4 ">
-                                <div class="card card-body ">
+                                <div class="card card-body "  @if ($employee->employee_status == 'suspended')
+                                    style = "background-color:#ea7777a6"
+                                
+                                @endif>
                                         
                                     <div class="row m-b-20">
                                         <div class="col-md-4 col-lg-3 text-center ">

@@ -13,7 +13,7 @@
 
 
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('dashboard');
 Route::resource('/login', 'LoginController');
 Route::resource('/employee', 'EmployeeController');
 Route::get('/logout', 'LoginController@logout')->name('logout');
